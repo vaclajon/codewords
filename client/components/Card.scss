@@ -1,0 +1,53 @@
+.cardContainer {
+  background: url('/assets/images/card.png') no-repeat;
+  background-size: cover;
+  width: 245px;
+  height: 155px;
+  border-radius: 5%;
+  position: relative;
+  flex: 18%;
+  margin: 10px;
+  user-select: none;
+}
+
+.cardContainer.red1 {
+  background-image: url('/assets/images/red1.png');
+}
+
+.cardContainer.blue1 {
+  background-image: url('/assets/images/blue1.png');
+}
+
+.cardContainer.empty1 {
+  background-image: url('/assets/images/empty1.png');
+}
+
+.cardContainer.black1, .cardContainer.black2 {
+  background-image: url('/assets/images/black1.png');
+}
+
+.cardContainer.red2 {
+  background-image: url('/assets/images/red2.png');
+}
+
+.cardContainer.blue2 {
+  background-image: url('/assets/images/blue2.png');
+}
+
+.cardContainer.empty2 {
+  background-image: url('/assets/images/empty2.png');
+}
+
+.cardWord {
+  position: absolute;
+  bottom: 34px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.cardWordFlipped {
+  position: absolute;
+  top: 59px;
+  left: 100px;
+  transform: rotate(180deg) translateX(50%);
+}

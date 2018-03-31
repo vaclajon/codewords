@@ -65,7 +65,7 @@ router.get('/words/:count', (req, res, next) => {
 app.use('/codewords/api', router);
 
 const PORT = 3000;
-let server = app.listen(3000, '192.168.0.103' || 'localhost', function () {
+let server = app.listen(3000, '192.168.0.108' || 'localhost', function () {
 	console.log('Server listening on port' + PORT);
 });
 
