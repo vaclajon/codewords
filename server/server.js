@@ -54,6 +54,14 @@ router.get('/map', (req, res, next) => {
 	res.send(team);
 });
 
+router.get('/words/:count', (req, res, next) => {
+	let words = [];
+	for (let i = 0; i < req.params.count; i++) {
+		words.push(getRandom());
+	}
+	res.send(words);
+});
+
 app.use('/codewords/api', router);
 
 const PORT = 3000;
