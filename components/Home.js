@@ -12,8 +12,8 @@ class Home extends Component {
 	};
 
 	componentDitMount() {
-		/*fetch('https://localhost:3000/codewords/api/map')
-			.then((response) => this.setState({ map: response.json() }));*/
+		fetch('https://localhost:3000/codewords/api/map')
+			.then((response) => this.setState({ map: response.json() }));
 
 	}
 
@@ -36,9 +36,7 @@ class Home extends Component {
 			<View style={styles.container}>
 				{map && map.map(field => {
 					return (
-						<Text style={{ width: '20%', height: '20%', backgroundColor: Home.getColor(field) }}>
-							{field}
-						</Text>
+						<Text style={{ width: '20%', height: '20%', backgroundColor: Home.getColor(field) }} />
 					)
 				})}
 			</View>
@@ -49,6 +47,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		flexWrap: 'wrap',
 		paddingTop: 22
 	},
 	item: {
