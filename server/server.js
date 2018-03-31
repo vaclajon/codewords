@@ -7,7 +7,7 @@ let db = [];
 let game = ['X', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'E', 'E', 'E', 'E', 'E', 'E', 'E'];
 let plan;
 //DB init
-var lineReader = require('readline').createInterface({
+const lineReader = require('readline').createInterface({
 	input: require('fs').createReadStream('slovnik.txt')
 });
 lineReader.on('line', function (line) {
@@ -18,6 +18,15 @@ const getRandom = () => {
 	return db[Math.floor(Math.random() * db.length)];
 };
 
+const createGame = () => {
+	plan = shuffle(game);
+
+	plan = plan.map(team => {
+		return { team: team, word: getRandom() }
+	});
+	return plan;
+};
+createGame();
 
 router.all('*', (req, res, next) => {
 	console.log(req.headers);
@@ -26,12 +35,8 @@ router.all('*', (req, res, next) => {
 });
 
 router.get('/start', (req, res, next) => {
-	plan = shuffle(game);
-
-	plan = plan.map(team => {
-		return { team: team, word: getRandom() }
-	});
-	res.send(plan);
+	res.setHeader('Content-Type', 'application/json');
+	res.send(createGame());
 });
 
 router.get('/game', (req, res, next) => {
@@ -45,12 +50,14 @@ router.get('/map', (req, res, next) => {
 	let team = plan.map(word => {
 		return word.team;
 	});
+	res.setHeader('Content-Type', 'application/json');
 	res.send(team);
 });
 
 app.use('/codewords/api', router);
 
-let server = app.listen('3000', '127.0.0.1', function () {
-	console.log('Server listening on port 3000');
+const PORT = 3000;
+let server = app.listen(3000, '192.168.0.103' || 'localhost', function () {
+	console.log('Server listening on port' + PORT);
 });
 
