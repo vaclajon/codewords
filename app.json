@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "UCW projects",
+    "description": "This project is basic project used for browsing projects of UCW platform.",
+    "slug": "ucw-project",
+    "privacy": "unlisted",
+    "sdkVersion": "25.0.0",
+    "platforms": ["ios", "android"],
+    "version": "0.1.0",
+    "orientation": "default",
+    "android": {
+      "package": "unitycloudware.mobile.projectmanager"
+    },
+    "splash": {
+      "image": "./assets/images/ucw_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
