@@ -27,8 +27,8 @@ module.exports = {
 
 	],
 	output: {
-		path: path.join(ABSOLUTE_BASE, '/dist/'),
-		filename: 'bundle.js',
+		path: path.join(ABSOLUTE_BASE, '/client/'),
+		filename: 'index.js',
 		publicPath: '/'
 	},
 	module: {

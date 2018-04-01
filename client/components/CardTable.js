@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Card from './Card';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import './CardTable.scss'
@@ -31,20 +31,24 @@ class CardTable extends React.Component {
   };
 
   render() {
+    const { gameId } = this.props;
     const { words } = this.state;
 
     return (
-      <div className="cardTableContainer">
-        {
-          words.map((word, i) =>
-              <Card
-                onContextMenu={ (e) =>  this.changeWord(e, i) }
-                word={ word }
-                team={ this.state.cardTeams[i] }
-              />
-          )
-        }
-      </div>
+      <Fragment>
+        <h3>{ gameId }</h3>
+        <div className="cardTableContainer">
+          {
+            words.map((word, i) =>
+                <Card
+                  onContextMenu={ (e) =>  this.changeWord(e, i) }
+                  word={ word }
+                  team={ this.state.cardTeams[i] }
+                />
+            )
+          }
+        </div>
+      </Fragment>
     )
   }
 }
