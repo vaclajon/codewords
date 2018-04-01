@@ -7,7 +7,9 @@
   position: relative;
   flex: 18%;
   margin: 10px;
+  font-size: 32px;
   user-select: none;
+  -moz-user-select: none;
 }
 
 .cardContainer.red1 {
@@ -40,7 +42,7 @@
 
 .cardWord {
   position: absolute;
-  bottom: 34px;
+  bottom: 12px;
   right: 50%;
   transform: translateX(50%);
 }
