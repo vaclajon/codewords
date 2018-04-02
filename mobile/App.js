@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View, Button } from 'react-native';
 
-const API = 'http://192.168.0.103:3000/codewords/api/';
+const API = 'http://192.168.0.104:3000/codewords/api/';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -10,6 +10,11 @@ export default class App extends React.Component {
 
 		this.loadData = this.loadData.bind(this);
 		this.restartGame = this.restartGame.bind(this);
+		this.getId = this.getId.bind(this);
+	}
+
+	componentDidMount(){
+		this.getId();
 	}
 
 	loadData() {
@@ -26,8 +31,17 @@ export default class App extends React.Component {
 	restartGame() {
 		fetch(`${API}/start`)
 			.then(() => this.loadData())
+			.then(() => this.getId())
 			.catch((error) => {
 				console.error(error);
+			});
+	}
+
+	getId() {
+		fetch(`${API}/id`)
+			.then(response => response.text())
+			.then(id => {
+				this.setState({ id: id })
 			});
 	}
 
@@ -46,7 +60,7 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		const { game, isLoading } = this.state;
+		const { game, isLoading, id } = this.state;
 		if (isLoading) {
 			return <View style={{ paddingTop: 50, paddingBottom: 0 }}>
 				<Button
@@ -63,6 +77,7 @@ export default class App extends React.Component {
 						onPress={this.restartGame}
 						title="Restart game"
 					/>
+					<Text>{id}</Text>
 				</View>,
 				<View style={styles.container} key='plan'>
 					{game.map((item, index) => {
@@ -84,6 +99,7 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		paddingTop: 5,
 		width: '100%',
+		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignContent: 'space-around',
 		backgroundColor: 'black'

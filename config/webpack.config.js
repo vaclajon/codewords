@@ -10,6 +10,7 @@ let DefinePlugin = require('webpack/lib/DefinePlugin');
 
 const PORT = process.env.npm_package_config_port || 3001;
 const ABSOLUTE_BASE = path.normalize(path.join(__dirname,'..'));
+const ADDRESS = 'localhost' /*"10.2.105.219"*/ ;
 
 module.exports = {
 	devtool: 'eval',
@@ -20,7 +21,8 @@ module.exports = {
 		'core-js/es6/function.js',
 		'core-js/es6/string.js',
 
-		'webpack-dev-server/client?http://localhost:3001',
+		'react-hot-loader/patch',
+		`webpack-dev-server/client?http://${ADDRESS}:${PORT}`,
 		'webpack/hot/only-dev-server',
 
 		path.join(ABSOLUTE_BASE, 'client/index.js')
@@ -40,7 +42,17 @@ module.exports = {
 			{
 				test: /\.(js)?$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				options: {
+
+					// This is a feature of `babel-loader` for webpack (not Babel itself).
+					// It enables caching results in ./node_modules/.cache/babel-loader/
+					// directory for faster rebuilds.
+					cacheDirectory: true,
+					plugins: [
+						'react-hot-loader/babel'
+					]
+				}
 			},
 			{
 				test: /\.json?$/,
@@ -96,7 +108,7 @@ module.exports = {
 		extensions: ['.js', '.jsx']
 	},
 	devServer: {
-		host: 'localhost',
+		host: ADDRESS,
 		port: PORT,
 
 		// respond to 404s with index.html

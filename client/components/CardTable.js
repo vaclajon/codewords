@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import Card from './Card';
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import './CardTable.scss'
 
 
@@ -36,7 +35,7 @@ class CardTable extends React.Component {
 
     return (
       <Fragment>
-        <h3>{ gameId }</h3>
+        <h3 className="gameId">{ gameId }</h3>
         <div className="cardTableContainer">
           {
             words.map((word, i) =>

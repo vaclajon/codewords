@@ -3,37 +3,39 @@ import cx from 'classnames';
 import './Card.scss';
 
 class Card extends React.Component {
-  state = {
-    flipped: false
-  };
+	state = {
+		flipped: false
+	};
 
-  handleClick = () => {
-    !this.state.flipped && this.setState({
-      flipped: true
-    })
-  };
+	handleClick = () => {
+		!this.state.flipped && this.setState({
+			flipped: true
+		})
+	};
 
-  render() {
-    const { word, team, ...props } = this.props;
+	render() {
+		const { word, team, ...props } = this.props;
 
-    const classes = cx({
-      cardContainer: true,
-      [team]: this.state.flipped && team
-    });
+		const classes = cx({
+			cardContainer: true,
+			[team]: this.state.flipped && team
+		});
 
-    return (
-      <div className={ classes } onClick={ this.handleClick } { ...props }>
-        {
-          !this.state.flipped && (
-            <Fragment>
-              <span className="cardWord">{ word }</span>
-              <span className="cardWordFlipped">{ word }</span>
-            </Fragment>
-          )
-        }
-      </div>
-    )
-  }
+		return (
+			<div className="cardWrapper">
+				<div className={classes} onClick={this.handleClick} {...props}>
+					{
+						!this.state.flipped && (
+							<Fragment>
+								<div className="cardWordFlipped">{word}</div>
+								<div className="cardWord">{word}</div>
+							</Fragment>
+						)
+					}
+				</div>
+			</div>
+		)
+	}
 }
 
 export default Card;
